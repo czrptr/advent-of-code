@@ -15,18 +15,12 @@ with open("../Resources/day1input.txt", "r") as file:
 
 # part 1
 
-increases = 0
-for a, b in iter.pairwise(measurements):
-  if a < b:
-    increases += 1
+increases = sum(int(a < b) for a, b in iter.pairwise(measurements))
 
 print(increases)
 
 # part 2
 
-increases = 0
-for t1, t2 in iter.pairwise(iter.windowed(measurements, 3)):
-  if sum(t1) < sum(t2):
-    increases += 1
+increases = sum(int(sum(t1) < sum(t2)) for t1, t2 in iter.pairwise(iter.windowed(measurements, 3)))
 
 print(increases)
