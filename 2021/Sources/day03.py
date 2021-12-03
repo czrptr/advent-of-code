@@ -10,7 +10,7 @@ def intFromBase2(bits: T.List[int], bits_reversed: bool = True) -> int:
   return result
 
 def bitNegation(bits: T.List[int]) -> T.List[int]:
-  return [int(bool(bit-1)) for bit in bits]
+  return [int(bool(bit - 1)) for bit in bits]
 
 def most_common(bits: T.Iterator[int]) -> int:
   match compare(list(bits).count(0), list(bits).count(1)):
