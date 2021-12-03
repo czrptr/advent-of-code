@@ -1,6 +1,7 @@
-from __future__ import annotations
-import typing as T
-import enum
+from aoc import *
+aoc.init(__file__)
+
+# ---------- Setup ---------- #
 
 @enum.unique
 class Direction(enum.Enum):
@@ -10,23 +11,15 @@ class Direction(enum.Enum):
 
 Command = T.Tuple[Direction, int]
 
-# example
-# course: T.List[Command] = [
-#   (Direction.FORWARD, 5),
-#   (Direction.DOWN, 5),
-#   (Direction.FORWARD, 8),
-#   (Direction.UP, 3),
-#   (Direction.DOWN, 8),
-#   (Direction.FORWARD, 2),
-# ]
+# ---------- Input ---------- #
 
 course: T.List[Command] = []
-with open("../Resources/day2input.txt", "r") as file:
+with aoc.input() as file:
   for line in file.readlines():
     dir_str, dist_str = line.strip().split(" ")
     course.append((Direction(dir_str), int(dist_str)))
 
-# part 1
+# ---------- Solution ---------- #
 
 hpos, depth = (0,) * 2
 for (dir, dist) in course:
@@ -38,9 +31,7 @@ for (dir, dist) in course:
     case Direction.UP:
       depth -= dist
 
-print(hpos * depth)
-
-# part 2
+aoc.part1 = hpos * depth
 
 hpos, depth, aim = (0,) * 3
 for (dir, dist) in course:
@@ -53,4 +44,6 @@ for (dir, dist) in course:
     case Direction.UP:
       aim -= dist
 
-print(hpos * depth)
+aoc.part2 = hpos * depth
+
+aoc.print()

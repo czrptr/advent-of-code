@@ -1,0 +1,20 @@
+{
+  "tasks": [
+    {
+      "label": "Run",
+      "type": "shell",
+      "command": "python3.10 ${file}",
+      "options": {
+        "cwd": "${fileDirname}",
+        "env": {
+          "PYTHONPATH": "/home/user/.local/lib/python3.10/site-packages"
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ],
+  "version": "2.0.0"
+}
