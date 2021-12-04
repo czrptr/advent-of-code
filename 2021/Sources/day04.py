@@ -5,7 +5,7 @@ aoc.init(__file__)
 
 class Board:
   DIM = 5
-  TRUES_ROW = np.array([True] * DIM)
+  __TRUES_ROW = np.array([True] * DIM)
 
   values: np.ndarray = None
   drawn: np.ndarray = None
@@ -15,8 +15,8 @@ class Board:
       row = self.drawn[i, :]
       col = self.drawn[:, i]
 
-      if np.array_equal(row, Board.TRUES_ROW) \
-        or np.array_equal(col, Board.TRUES_ROW):
+      if np.array_equal(row, Board.__TRUES_ROW) \
+        or np.array_equal(col, Board.__TRUES_ROW):
         return True
     return False
 
@@ -34,21 +34,21 @@ class Board:
   def __repr__(self) -> str:
     return self.__str__()
 
-NO_DRAWS = np.array([[False] * 5] * 5)
+NO_DRAWS = np.array([[False] * Board.DIM] * Board.DIM)
 
 # ---------- Input ---------- #
 
 numbers: T.List[int] = []
 boards: T.List[Board] = []
 
-lines: T.List[str] = []
 with aoc.input() as file:
   lines = [line.strip() for line in file.readlines() if len(line.strip()) > 0]
   numbers = [int(number) for number in lines[0].split(",")]
-  for i in range((len(lines) - 1) // 5):
+
+  for i in range((len(lines) - 1) // Board.DIM):
     board: T.List[T.List[int]] = []
-    for j in range(5):
-      board.append([int(number) for number in re.split(r"\s+", lines[i * 5 + j + 1])])
+    for j in range(Board.DIM):
+      board.append([int(number) for number in re.split(r"\s+", lines[i * Board.DIM + j + 1])])
     boards.append(Board(np.array(board), np.copy(NO_DRAWS)))
 
 # ---------- Solution ---------- #
@@ -61,9 +61,9 @@ while len(boards) > 0:
       if board.values[i, j] == drawn:
         board.drawn[i, j] = True
 
-  current_winning_boards = list(filter(lambda b: b.isWinning(), boards))
-  wins += zip(current_winning_boards, [drawn] * len(current_winning_boards))
-  boards = list(filter(lambda b: not b.isWinning(), boards))
+  current_winning_boards = [b for b in boards if b.isWinning()]
+  wins += zip(current_winning_boards, iter.cycle([drawn]))
+  boards = [b for b in boards if not b.isWinning()]
 
 first_win = wins[0]
 

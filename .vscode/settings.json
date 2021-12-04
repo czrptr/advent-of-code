@@ -6,7 +6,8 @@
     "**/Thumbs.db": true
   },
   "python.analysis.extraPaths": [
-    "/home/user/.local/lib/python3.10/site-packages"
+    "/home/user/.local/lib/python3.10/site-packages",
+    "${workspaceFolder}/lib"
   ],
   "editor.tabSize": 2,
   "editor.insertSpaces": true,

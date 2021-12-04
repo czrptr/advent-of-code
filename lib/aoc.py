@@ -1,10 +1,9 @@
 from __future__ import annotations
 import typing as T
-import itertools as iter
-import more_itertools as iter
 import functools as func
 import numpy as np
 
+import iter
 import enum
 import sys
 import os

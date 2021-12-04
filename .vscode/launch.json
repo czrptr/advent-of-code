@@ -1,8 +1,4 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
   "configurations": [
     {
       "name": "Debug",
@@ -11,9 +7,10 @@
       "program": "${file}",
       "cwd": "${fileDirname}",
       "env": {
-        "PYTHONPATH": "/home/user/.local/lib/python3.10/site-packages"
+        "PYTHONPATH": "/home/user/.local/lib/python3.10/site-packages:${workspaceFolder}/lib"
       },
       "console": "integratedTerminal"
     }
-  ]
+  ],
+  "version": "0.2.0"
 }
