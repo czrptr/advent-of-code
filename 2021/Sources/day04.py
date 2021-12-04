@@ -1,4 +1,3 @@
-from more_itertools.more import windowed
 from aoc import *
 aoc.init(__file__)
 

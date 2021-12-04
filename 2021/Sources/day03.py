@@ -26,7 +26,7 @@ def least_common(bits: T.Iterator[int]) -> int:
     case Comparison.GREATER:
       return 1
 
-def dominant_filter(report, bias: int) -> T.List[int]:
+def bit_filter(report: np.ndarray, bias: int) -> T.List[int]:
   aux = []
   for col in range(W):
     if np.shape(report)[0] == 1:
@@ -57,8 +57,8 @@ gamma_bits = [most_common(report[:, col]) for col in range(W)]
 
 aoc.part1 = intFromBase2(gamma_bits) * intFromBase2(bitNegation(gamma_bits))
 
-generator_rating_bits = dominant_filter(report, 1)
-scrubber_rating_bits = dominant_filter(report, 0)
+generator_rating_bits = bit_filter(report, 1)
+scrubber_rating_bits = bit_filter(report, 0)
 
 aoc.part2 = intFromBase2(generator_rating_bits) * intFromBase2(scrubber_rating_bits)
 
