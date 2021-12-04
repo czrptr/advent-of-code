@@ -10,18 +10,7 @@ def bitNegation(bits: T.List[int]) -> T.List[int]:
   return [int(bool(bit - 1)) for bit in bits]
 
 def most_common(bits: T.Iterator[int]) -> int:
-  match compare(list(bits).count(0), list(bits).count(1)):
-    case Comparison.LESSER | Comparison.EQUAL:
-      return 1
-    case Comparison.GREATER:
-      return 0
-
-def least_common(bits: T.Iterator[int]) -> int:
-  match compare(list(bits).count(0), list(bits).count(1)):
-    case Comparison.LESSER | Comparison.EQUAL:
-      return 0
-    case Comparison.GREATER:
-      return 1
+  return (0, 1)[list(bits).count(1) >= list(bits).count(0)]
 
 def bit_filter(report: np.ndarray, bias: int) -> T.List[int]:
   aux = []
@@ -29,9 +18,9 @@ def bit_filter(report: np.ndarray, bias: int) -> T.List[int]:
     if np.shape(report)[0] == 1:
       break
 
-    common_bit = most_common(report[:, col]) if bias == 1 else least_common(report[:, col])
+    bias_bit = abs(1 - bias - most_common(report[:, col]))
     for row in range(np.shape(report)[0]):
-      if report[row, col] == common_bit:
+      if report[row, col] == bias_bit:
         aux.append(list(report[row]))
 
     report, aux = np.array(aux), []
