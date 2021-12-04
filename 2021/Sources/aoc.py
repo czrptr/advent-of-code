@@ -46,3 +46,21 @@ def compare(a: int, b: int) -> Comparison:
   if a < b: return Comparison.LESSER
   if a == b: return Comparison.EQUAL
   return Comparison.GREATER
+
+def matrix_indexes(*args: T.List[int]) -> T.Generator[int]:
+  dims = len(args)
+  bases = list(reversed(args))
+  indexes = [-1] + [0] * (dims - 1)
+
+  for i in range(func.reduce(lambda a, b: a * b, args)):
+    j = 0
+    indexes[j] += 1
+    while j < dims:
+      if indexes[j] == bases[j]:
+        indexes[j] = 0
+        j += 1
+        indexes[j] += 1
+      else:
+        break
+
+    yield tuple(reversed(indexes))
