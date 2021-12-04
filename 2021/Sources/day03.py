@@ -3,11 +3,8 @@ aoc.init(__file__)
 
 # ---------- Setup ---------- #
 
-def intFromBase2(bits: T.List[int], bits_reversed: bool = True) -> int:
-  result = 0
-  for exp, bit in enumerate(reversed(bits) if bits_reversed else bits):
-    result += bit * pow(2, exp)
-  return result
+def intFromBase2(bits: T.List[int]) -> int:
+  return int(''.join([str(bit) for bit in bits]), 2)
 
 def bitNegation(bits: T.List[int]) -> T.List[int]:
   return [int(bool(bit - 1)) for bit in bits]
