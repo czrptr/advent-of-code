@@ -45,10 +45,10 @@ with aoc.input() as file:
   lines = [line.strip() for line in file.readlines() if len(line.strip()) > 0]
   numbers = [int(number) for number in lines[0].split(",")]
 
-  for i in range((len(lines) - 1) // Board.DIM):
+  for i in range(1, len(lines), Board.DIM):
     board: T.List[T.List[int]] = []
     for j in range(Board.DIM):
-      board.append([int(number) for number in re.split(r"\s+", lines[i * Board.DIM + j + 1])])
+      board.append([int(number) for number in re.split(r"\s+", lines[i + j])])
     boards.append(Board(np.array(board), np.copy(NO_DRAWS)))
 
 # ---------- Solution ---------- #
