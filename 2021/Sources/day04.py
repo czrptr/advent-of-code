@@ -7,10 +7,7 @@ class Board:
   DIM = 5
   __TRUES_ROW = np.array([True] * DIM)
 
-  values: np.ndarray = None
-  drawn: np.ndarray = None
-
-  def isWinning(self) -> bool:
+  def is_winning(self) -> bool:
     for i in range(Board.DIM):
       row = self.drawn[i, :]
       col = self.drawn[:, i]
@@ -61,9 +58,9 @@ while len(boards) > 0:
       if board.values[i, j] == drawn:
         board.drawn[i, j] = True
 
-  current_winning_boards = [b for b in boards if b.isWinning()]
+  current_winning_boards = [b for b in boards if b.is_winning()]
   wins += zip(current_winning_boards, iter.cycle([drawn]))
-  boards = [b for b in boards if not b.isWinning()]
+  boards = [b for b in boards if not b.is_winning()]
 
 first_win = wins[0]
 
