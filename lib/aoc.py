@@ -1,9 +1,9 @@
 from __future__ import annotations
 import typing as T
-import functools as func
 import numpy as np
 
 import iter
+import func
 import enum
 import sys
 import os
@@ -63,3 +63,6 @@ def matrix_indexes(*args: T.List[int]) -> T.Generator[int]:
         break
 
     yield tuple(reversed(indexes))
+
+def clamp(value: int, min_value: int, max_value: int) -> int:
+  return max(min(value, max_value), min_value)
