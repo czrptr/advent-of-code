@@ -55,11 +55,11 @@ diagram = np.array([[0] * W] * H) #[y, x]
 for l in filter(Line.is_aa, lines):
   if l.a.x == l.b.x:
     x = l.a.x
-    y1, y2 = (l.a.y, l.b.y) if l.a.y < l.b.y else (l.b.y, l.a.y)
+    y1, y2 = sorted([l.a.y, l.b.y])
     diagram[y1 : y2 + 1, x] += 1
   else: # l.a.y == l.b.y
     y = l.a.y
-    x1, x2 = (l.a.x, l.b.x) if l.a.x < l.b.x else (l.b.x, l.a.x)
+    x1, x2 = sorted([l.a.x, l.b.x])
     diagram[y, x1 : x2 + 1] += 1
 
 aoc.part1 = np.count_nonzero(diagram >= 2)
