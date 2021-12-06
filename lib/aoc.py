@@ -66,3 +66,6 @@ def matrix_indexes(*args: T.List[int]) -> T.Generator[int]:
 
 def clamp(value: int, min_value: int, max_value: int) -> int:
   return max(min(value, max_value), min_value)
+
+def sign(value: int) -> int:
+  return 1 if value >= 0 else -1

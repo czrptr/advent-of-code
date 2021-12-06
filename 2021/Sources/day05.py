@@ -68,8 +68,8 @@ for l in filter(func.negation(Line.is_aa), lines):
   p = l.a
   while p != l.b:
     diagram[p.y, p.x] += 1
-    p.x += clamp(l.b.x - p.x, -1, 1)
-    p.y += clamp(l.b.y - p.y, -1, 1)
+    p.x += sign(l.b.x - p.x)
+    p.y += sign(l.b.y - p.y)
   diagram[p.y, p.x] += 1
 
 aoc.part2 = np.count_nonzero(diagram >= 2)
