@@ -13,5 +13,8 @@
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
   "files.trimTrailingWhitespace": true,
-  "files.trimFinalNewlines": true
+  "files.trimFinalNewlines": true,
+  "[python]": {
+    "files.insertFinalNewline": true
+  }
 }

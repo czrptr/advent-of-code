@@ -5,3 +5,6 @@ from functools import *
 
 def negation(f: T.Callable) -> T.Callable:
   return lambda *args, **kargs: not f(*args, **kargs)
+
+def identity(arg):
+  return arg
