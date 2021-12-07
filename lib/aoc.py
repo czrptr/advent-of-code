@@ -1,6 +1,5 @@
 from __future__ import annotations
-import typing as T
-import numpy as np
+import typing as T, numpy as np
 
 import math
 import iter
@@ -11,9 +10,9 @@ import os
 import re
 
 class aoc:
-  part1 = None
-  part2 = None
-  __day = None
+  part1: T.Any = None
+  part2: T.Any = None
+  __day: str | None = None
 
   @staticmethod
   def init(file_path: str):
@@ -47,7 +46,7 @@ def compare(a: int, b: int) -> Comparison:
   if a == b: return Comparison.EQUAL
   return Comparison.GREATER
 
-def matrix_indexes(*args: T.List[int]) -> T.Generator[int]:
+def matrix_indexes(*args: int) -> T.Generator:
   dims = len(args)
   bases = list(reversed(args))
   indexes = [-1] + [0] * (dims - 1)
