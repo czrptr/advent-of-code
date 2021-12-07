@@ -14,6 +14,29 @@
         "kind": "build",
         "isDefault": true
       }
+    },
+    {
+      "label": "Create AoC solution",
+      "type": "shell",
+      "command": "python3.10 ${workspaceFolder}/lib/__create__.py ${input:year} ${input:day}",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "build"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "year",
+      "description": "year",
+      "default": "2021",
+      "type": "promptString"
+    },
+    {
+      "id": "day",
+      "description": "day",
+      "default": "01",
+      "type": "promptString"
     }
   ],
   "version": "2.0.0"
